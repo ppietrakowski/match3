@@ -13,8 +13,9 @@ export default class GameScene extends Phaser.Scene
             'images/' + this.game.getScaleSuffix('spritesheet.png'),
             'images/' + this.game.getScaleSuffix('spritesheet.json')
         );
-        this.load.audio('DnD', 'sounds/src_assets_sounds_cristalDragDrop.mp3');
-        this.load.audio('score', 'sounds/src_assets_sounds_score.mp3')
+        this.load.audio('DnD1', 'sounds/src_assets_sounds_cristalDragDrop1.mp3');
+        this.load.audio('DnD2', 'sounds/src_assets_sounds_cristalDragDrop2.mp3');
+        this.load.audio('score', 'sounds/src_assets_sounds_score2.mp3')
         
     }
     create ()

@@ -22,7 +22,7 @@ export default class GemsBoard
 
     create() {
         //this.scene.sound.play('DnD');
-        //this.scene.sound.play('score');
+        
     }
 
     fill()
@@ -103,7 +103,16 @@ export default class GemsBoard
         gem.on(Phaser.Input.Events.POINTER_OVER, (pointer) => {
             if (this.selectedGem !== null && this.selectedGem.isNeightbour(gem)) {
                 // swap
-                this.scene.sound.play('DnD');
+                
+                
+                if((Math.floor(Math.random() * 100))%2==0) {
+                    this.scene.sound.play('DnD1');
+                } else {
+                    this.scene.sound.play('DnD2');
+                }
+                
+                
+
                 this.gems[gem.state.y][gem.state.x] = this.selectedGem;
                 this.gems[this.selectedGem.state.y][this.selectedGem.state.x] = gem;
                 let x = this.selectedGem.state.x;
