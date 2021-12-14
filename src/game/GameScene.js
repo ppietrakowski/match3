@@ -1,5 +1,4 @@
-import Gems from "./Gems";
-import GemSprite from "./GemSprite";
+import GemsBoard from "./GemsBoard";
 
 export default class GameScene extends Phaser.Scene
 {
@@ -19,6 +18,6 @@ export default class GameScene extends Phaser.Scene
     {
         console.log("GameScene has been started.");
         this.cameras.main.setBackgroundColor("#ffffff");
-        const gems = new Gems(this);
+        new GemsBoard(this);
     }
 }
