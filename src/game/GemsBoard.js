@@ -4,6 +4,7 @@ export default class GemsBoard
 {
     constructor(scene)
     {
+        this.score = 0;
         this.scene = scene;
         this.size = 5;
         this.selectedGem = null;
@@ -119,7 +120,10 @@ export default class GemsBoard
                         })
                     }
                     if (points > 0) {
-                        this.scene.add.text(gem.x, gem.y, points * 100);
+                        var text = this.scene.add.text(gem.x, gem.y, points * 100, { fontFamily: 'Arial', fontSize: 64, color: '#00ff00' });
+                        this.scene.tweens.add({ targets: text, y: '-=200', yoyo: false, duration: 750, ease: 'Cubic', onComplete: () => {
+                            text.destroy();
+                        }});
                     }
                     Promise.all(promises).then(() => {
                         this.fill();
