@@ -21,7 +21,7 @@ export default class Gems
                         this.gemsArray[col][row].destroy();
                     }
                     this.gemsArray[col][row] = this.createRandomGem(row, col);
-                } while (this.isMatch(row, col));
+                } while (this.isMatchrow, col));
             }
         }
     }
