@@ -16,7 +16,7 @@ export default class GameScene extends Phaser.Scene
         this.load.audio('DnD1', 'sounds/src_assets_sounds_cristalDragDrop1.mp3');
         this.load.audio('DnD2', 'sounds/src_assets_sounds_cristalDragDrop2.mp3');
         this.load.audio('score', 'sounds/src_assets_sounds_score2.mp3')
-        
+        this.load.audio('musik', 'sounds/src_assets_sounds_.mp3');
     }
     create ()
     {
