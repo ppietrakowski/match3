@@ -116,8 +116,8 @@ gulp.task("generate-assets", (done) => {
             fileName: "spritesheet@" + dpiFactor,
             outFolder: path.join("src", "assets", "images"),
             packOptions: {
-                maxWidth: 2048,
-                maxHeight: 2048
+                maxWidth: 4096,
+                maxHeight: 4096,
             },
         })
             .then(() => log(`Pack@${dpiFactor} successful`));

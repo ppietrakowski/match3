@@ -51,7 +51,8 @@ export default class Gems
         let gem = new GemSprite(this.scene, row, col, this.colors[Phaser.Math.Between(0, this.colors.length - 1)]);
         gem.setInteractive({
             pixelPerfect: true,
-            draggable: true
+            draggable: true,
+            dropZone: true
         });
         gem.on(Phaser.Input.Events.POINTER_OVER, (pointer) => {
             gem.setTint(0x787878);
@@ -65,14 +66,20 @@ export default class Gems
             gem.y = dragY;
         });
         gem.on(Phaser.Input.Events.DRAG_START, () => {
+            
             this.scene.children.bringToTop(gem);
         });
+
         gem.on(Phaser.Input.Events.DRAG_END, (pointer, dragX, dragY, dropped) => {
             if (! dropped) {
                 gem.x = gem.input.dragStartX;
                 gem.y = gem.input.dragStartY;
             }
             gem.input.draggable = false;
+        });
+
+        gem.on(Phaser.Input.Events.DRAG_ENTER, (pointer, gameObject, dropZone) => {
+            dropZone.setTint(0x787878);
         });
         return gem;
     }
