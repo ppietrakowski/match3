@@ -100,9 +100,9 @@ gulp.task("default", gulp.series("build", "serve"));
  * Generuje zasoby.
  */
 gulp.task("generate-assets", (done) => {
-    const inkscape = "C:\\Program Files\\Inkscape\\bin\\inkscape.exe";
-    const groups = ["blue", "red", "yellow"];
-    const input = path.join(__dirname, "src", "resources", "gfx.svg");
+    const inkscape = "/Applications/Inkscape.app/Contents/MacOS/inkscape";
+    const groups = ["blue", "red", "yellow", "g271"];
+    const input = path.join(__dirname, "src", "resources", "board.svg");
     const maxDpiFactor = 4;
     for (let dpiFactor = 1; dpiFactor <= maxDpiFactor; ++dpiFactor) {
         for (let group of groups) {
@@ -114,7 +114,11 @@ gulp.task("generate-assets", (done) => {
         texturepack({
             folder: path.join("src", "resources", "@" + dpiFactor),
             fileName: "spritesheet@" + dpiFactor,
-            outFolder: path.join("src", "assets", "images")
+            outFolder: path.join("src", "assets", "images"),
+            packOptions: {
+                maxWidth: 2048,
+                maxHeight: 2048
+            },
         })
             .then(() => log(`Pack@${dpiFactor} successful`));
     }
