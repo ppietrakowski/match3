@@ -17,6 +17,14 @@ export default class GemsBoard
         }
         this.fill();
     }
+
+    
+
+    create() {
+        //this.scene.sound.play('DnD');
+        //this.scene.sound.play('score');
+    }
+
     fill()
     {
         for (let y = 0; y < this.size; ++y) {
@@ -95,6 +103,7 @@ export default class GemsBoard
         gem.on(Phaser.Input.Events.POINTER_OVER, (pointer) => {
             if (this.selectedGem !== null && this.selectedGem.isNeightbour(gem)) {
                 // swap
+                this.scene.sound.play('DnD');
                 this.gems[gem.state.y][gem.state.x] = this.selectedGem;
                 this.gems[this.selectedGem.state.y][this.selectedGem.state.x] = gem;
                 let x = this.selectedGem.state.x;
@@ -116,6 +125,7 @@ export default class GemsBoard
                         gems.forEach(([x, y]) => {
                             promises.push(this.gems[y][x].remove());
                             this.gems[y][x] = null;
+                            this.scene.sound.play('score');
                         })
                     }
                     if (points > 0) {
