@@ -16,8 +16,12 @@ export default class GemsBoard
                 this.gems[y][x] = null;
             }
         }
+
+        this.points = scene.add.text(1000, 50, '0', {color: '0xff000000', fontSize: '60px'});
+        console.log(this.points);
         this.fill();
     }
+
     fill()
     {
         for (let y = 0; y < this.size; ++y) {
@@ -120,10 +124,17 @@ export default class GemsBoard
                         })
                     }
                     if (points > 0) {
-                        var text = this.scene.add.text(gem.x, gem.y, points * 100, { fontFamily: 'Arial', fontSize: 64, color: '#00ff00' });
+                        points *= 100;
+
+                        var text = this.scene.add.text(gem.x, gem.y, points, { fontFamily: 'Arial', fontSize: 64, color: '#00ff00' });
                         this.scene.tweens.add({ targets: text, y: '-=200', yoyo: false, duration: 750, ease: 'Cubic', onComplete: () => {
                             text.destroy();
                         }});
+                    
+                        console.log(points);
+                        let p = parseInt(this.points.text);
+                        p += points;
+                        this.points.text = p.toString();
                     }
                     Promise.all(promises).then(() => {
                         this.fill();
