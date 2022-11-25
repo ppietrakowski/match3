@@ -1,7 +1,5 @@
-export default class Gem extends Phaser.GameObjects.Sprite
-{
-    constructor(scene, x, y, color)
-    {
+export default class Gem extends Phaser.GameObjects.Sprite {
+    constructor(scene, x, y, color) {
         super(
             scene,
             (32 + x * 64) * scene.game.scaleFactor,
@@ -15,7 +13,7 @@ export default class Gem extends Phaser.GameObjects.Sprite
             x: x,
             y: y
         });
-        this.setInteractive({pixelPerfect: true});
+        this.setInteractive({ pixelPerfect: true });
     }
     isNeightbour(anotherGem) {
         return (this.state.x === anotherGem.state.x && this.state.y + 1 === anotherGem.state.y)
@@ -23,8 +21,7 @@ export default class Gem extends Phaser.GameObjects.Sprite
             || (this.state.x + 1 === anotherGem.state.x && this.state.y === anotherGem.state.y)
             || (this.state.x - 1 === anotherGem.state.x && this.state.y === anotherGem.state.y);
     }
-    updatePosition(cb)
-    {
+    updatePosition(cb) {
         this.disableInteractive();
         this.scene.tweens.add({
             targets: this,
@@ -38,8 +35,7 @@ export default class Gem extends Phaser.GameObjects.Sprite
             }
         });
     }
-    remove()
-    {
+    remove() {
         this.disableInteractive();
         return new Promise(resolve => {
             this.scene.tweens.add({
@@ -55,8 +51,7 @@ export default class Gem extends Phaser.GameObjects.Sprite
             });
         });
     }
-    showUp()
-    {
+    showUp() {
         this.scene.tweens.add({
             targets: this,
             scaleX: { from: 0.01, to: 1 },

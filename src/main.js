@@ -10,10 +10,8 @@ import GameScene from "./game/GameScene"
  * Dodałem własną klasę gry, która rozszerza standardową klasę `Phaser.Game`.
  * Dzięki temu mogę w łatwy sposób rozszerzać grę o nowe funkcje.
  */
-class Game extends Phaser.Game
-{
-    constructor()
-    {
+class Game extends Phaser.Game {
+    constructor() {
         /**
          * Standardowa konfiguracja gry przekazywana do konstruktora klasy `Phaser.Game`.
          * @see https://rexrainbow.github.io/phaser3-rex-notes/docs/site/game/
@@ -24,8 +22,8 @@ class Game extends Phaser.Game
         const minScaleFactor = 1;
         super({
             type: Phaser.AUTO,
-            width: width, 
-            height: height, 
+            width: width,
+            height: height,
             /**
              * Konfiguracja skalowania gry.
              * @see https://rexrainbow.github.io/phaser3-rex-notes/docs/site/scalemanager/
@@ -57,14 +55,13 @@ class Game extends Phaser.Game
         if (this.ENV === 'dev') {
             this.setupStatsJS();
         }
-        
+
         // Dodawanie scen gry, pamiętaj aby je zaimportować na początku pliku!
         // @see https://rexrainbow.github.io/phaser3-rex-notes/docs/site/scenemanager/
         this.scene.add("BootScene", BootScene, true);
         this.scene.add("GameScene", GameScene, false);
     }
-    setupStatsJS()
-    {
+    setupStatsJS() {
         const stats = new Stats();
         stats.showPanel(0);
         document.body.appendChild(stats.dom);
@@ -75,10 +72,9 @@ class Game extends Phaser.Game
             stats.end();
         });
     }
-    getScaleSuffix(filename)
-    {
+    getScaleSuffix(filename) {
         const extension = /(?:\.([^.]+))?$/.exec(filename)[1];
-        const name = filename.substring(0, filename.length-extension.length-1);
+        const name = filename.substring(0, filename.length - extension.length - 1);
         return `${name}@${this.scaleFactor}.${extension}`;
     }
 }

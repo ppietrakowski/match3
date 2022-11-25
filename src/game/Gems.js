@@ -1,17 +1,14 @@
 import GemSprite from "./GemSprite";
 
-export default class Gems
-{
-    constructor (scene)
-    {
+export default class Gems {
+    constructor(scene) {
         this.gems = [];
         this.scene = scene;
         this.colors = ["red", "blue", "yellow"];
         this.fieldSize = 5;
         this.createGemsArray();
     }
-    createGemsArray()
-    {
+    createGemsArray() {
         this.gemsArray = [];
         for (let col = 0; col < this.fieldSize; ++col) {
             this.gemsArray[col] = [];
@@ -25,29 +22,25 @@ export default class Gems
             }
         }
     }
-    getGemColorAt(row, col)
-    {
-        if(row < 0 || row >= this.fieldSize || col < 0 || col >= this.fieldSize){
+    getGemColorAt(row, col) {
+        if (row < 0 || row >= this.fieldSize || col < 0 || col >= this.fieldSize) {
             return null;
         }
         return this.gemsArray[col][row].state.color;
     }
-    isMatch(row, col)
-    {
+    isMatch(row, col) {
         return this.isHorizontalMatch(row, col) || this.isVerticalMatch(row, col);
     }
-    isHorizontalMatch(row, col)
-    {
+    isHorizontalMatch(row, col) {
         return this.getGemColorAt(row, col) == this.getGemColorAt(row, col - 1)
             && this.getGemColorAt(row, col) == this.getGemColorAt(row, col - 2);
     }
-    isVerticalMatch(row, col)
-    {
+    isVerticalMatch(row, col) {
         return this.getGemColorAt(row, col) == this.getGemColorAt(row - 1, col)
             && this.getGemColorAt(row, col) == this.getGemColorAt(row - 2, col);
     }
-    createRandomGem(row, col)
-    {
+    
+    createRandomGem(row, col) {
         let gem = new GemSprite(this.scene, row, col, this.colors[Phaser.Math.Between(0, this.colors.length - 1)]);
         gem.setInteractive({
             pixelPerfect: true,
@@ -66,12 +59,12 @@ export default class Gems
             gem.y = dragY;
         });
         gem.on(Phaser.Input.Events.DRAG_START, () => {
-            
+
             this.scene.children.bringToTop(gem);
         });
 
         gem.on(Phaser.Input.Events.DRAG_END, (pointer, dragX, dragY, dropped) => {
-            if (! dropped) {
+            if (!dropped) {
                 gem.x = gem.input.dragStartX;
                 gem.y = gem.input.dragStartY;
             }

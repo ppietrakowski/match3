@@ -1,11 +1,8 @@
-export default class BootScene extends Phaser.Scene
-{
-    constructor ()
-    {
+export default class BootScene extends Phaser.Scene {
+    constructor() {
         super("BootScene");
     }
-    create ()
-    {
+    create() {
         console.log("BootScene has been started.");
         this.time.addEvent({
             delay: 0,
